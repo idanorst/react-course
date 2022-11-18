@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
+section {
+  padding: 20px;
+}
+
+nav {
+  background-color: #F55A5A;
+  color: white;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: inherit;
+  font-style: inherit;
+}
+
+.divider {
+  border: 1px solid #F5F5F5;
+  min-width: 478px;
+  max-width: 800px;
+  margin-left: 10px;
+}
+
+/* NAVBAR */
+.nav--icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.nav--title {
+  font-size: 0.8rem;
+}
+
+/* JOURNAL */
+
+/* TRIP */
+.trip {
+  min-width: 470px;
+  height: 170px;
+  display: flex;
+  gap: 20px;
+  margin: 20px 10px;
+}
+
+.trip--photo {
+  height: 168px;
+  width: 126px;
+  border-radius: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.trip--info {
+  margin-top: 10px;
+}
+
+.trip--location-icon {
+  width: 10px;
+  margin-right: 3px;
+}
+
+.trip--country {
+  color: #2B283A;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  letter-spacing: 0.2rem;
+  margin-right: 10px;
+}
+
+.trip--link {
+  font-size: 0.6rem;
+  color: #918E9B;
+}
+
+.trip--title {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.trip--date {
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+
+.trip--description {
+  margin-top: 5px;
+  font-size: 0.7rem;
+  line-height: 1rem;
+  color: #2B283A;
+}
+
