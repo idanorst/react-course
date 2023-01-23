@@ -3,6 +3,7 @@ import './style.css'
 import Die from './components/Die'
 import {nanoid} from 'nanoid'
 import Confetti from 'react-confetti'
+import PopUp from './components/PopUp'
 
 export default function App() {
   // Setting up all the different useStates
@@ -14,6 +15,8 @@ export default function App() {
   const [diff, setDiff] = React.useState(null)
   const [timeRegistered, setTimeRegistered] = React.useState(false)
   const [newBestTime, setNewBestTime] = React.useState(false)
+  const [wrongDie, setWrongDie] = React.useState(false)
+  const [showPopUp, setShowPopUp] = React.useState(false)
   // and variables
   const bestTime = JSON.parse(localStorage.getItem('bestTime'))
 
@@ -21,7 +24,7 @@ export default function App() {
   // Creating a useEffect
   React.useEffect(() => {
     // which register the value and count of the dice
-    let value = dice[0].value
+    let value
     let sameValue = false
     let count = 0
 
@@ -34,10 +37,16 @@ export default function App() {
     
     // Checking wether the die is held or not
     dice.map(die => {
+      if (die.isHeld && !value) {
+        value = die.value
+      }
       if (die.isHeld && die.value === value) {
         count++
       } else {
         count--
+      }
+      if (die.isHeld && die.value !== value) {
+        setShowPopUp(true)
       }
     })
     // If all the dice are held
@@ -105,6 +114,7 @@ export default function App() {
   // A function for the roll-button
   function rollDice() {
     setClicked(true)
+    setShowPopUp(false)
     // If we have tenzies, the button turns to a "New game"-button, and restarts the game
     if (tenzies) {
       setDice(allNewDice())  
@@ -112,6 +122,7 @@ export default function App() {
       setStartTime(new Date().getTime())
       setNewBestTime(false)
       setCount(0)
+      setShowPopUp(false)
     } else {
       // if not, just the dice which is not held, will be switched to new ones.
       setDice(oldDice => oldDice.map(die => {
@@ -131,6 +142,7 @@ export default function App() {
       {...die, isHeld: !die.isHeld} :
       die
     }))
+    setShowPopUp(false)
     setClicked(false)
       // Solution with for loop
     /* const array = []
@@ -145,9 +157,11 @@ export default function App() {
     setDice(array) */
   }
 
+
   // The HTML content we want to return from the component
   return (
     <main>
+      {showPopUp && <PopUp handleClick={() => setShowPopUp(false)}/>}
       <h1 className='title'>Tenzies</h1>
       {tenzies ? <p>Congrats, you won! You used {count} rolls. Time used: {diff}</p> : <p className='instructions'>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>}
       {newBestTime && <p className="bestTime">Congrats, it's also a new best time!</p>}

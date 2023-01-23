@@ -178,3 +178,58 @@ main {
   pointer-events: none;
 }
 
+/* Creating a popup for notifing the user */
+.popup {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 230px;
+  z-index: 100;
+  background-color: lightgray;
+  border-radius: 10px;
+}
+
+.popup-icon {
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+}
+
+.close-button {
+  position: absolute;
+  display: flex;
+  border: none;
+  background-color: lightgray;
+  right: 20px;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  opacity: 1;
+}
+
+.close-button:before, .close-button:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 21px;
+  width: 2px;
+  background-color: #333;
+}
+
+.close-button:before {
+  transform: rotate(45deg);
+}
+
+.close-button:after {
+  transform: rotate(-45deg);
+}
+
+
